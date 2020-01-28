@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/agora-video-react/static/css/main.ff19311d.chunk.css",
+    "main.js": "/agora-video-react/static/js/main.8f489a2a.chunk.js",
+    "main.js.map": "/agora-video-react/static/js/main.8f489a2a.chunk.js.map",
+    "runtime~main.js": "/agora-video-react/static/js/runtime~main.7d1575ad.js",
+    "runtime~main.js.map": "/agora-video-react/static/js/runtime~main.7d1575ad.js.map",
+    "static/css/2.bd936ec9.chunk.css": "/agora-video-react/static/css/2.bd936ec9.chunk.css",
+    "static/js/2.7c3d3ba7.chunk.js": "/agora-video-react/static/js/2.7c3d3ba7.chunk.js",
+    "static/js/2.7c3d3ba7.chunk.js.map": "/agora-video-react/static/js/2.7c3d3ba7.chunk.js.map",
+    "index.html": "/agora-video-react/index.html",
+    "precache-manifest.ee8287f4f398ac215502ed9e1b5d24d5.js": "/agora-video-react/precache-manifest.ee8287f4f398ac215502ed9e1b5d24d5.js",
+    "service-worker.js": "/agora-video-react/service-worker.js",
+    "static/css/2.bd936ec9.chunk.css.map": "/agora-video-react/static/css/2.bd936ec9.chunk.css.map",
+    "static/css/main.ff19311d.chunk.css.map": "/agora-video-react/static/css/main.ff19311d.chunk.css.map"
+  }
+}
