@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/agora-video-react/precache-manifest.334c26b7887f8ce3c9363b5cbb157301.js"
+  "/agora-video-react/precache-manifest.34c41225434d9c588bbf70616f827509.js"
 );
 
 self.addEventListener('message', (event) => {

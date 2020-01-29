@@ -51,6 +51,9 @@ const useStyles = makeStyles(theme => ({
   buttonItem: {
     width: "38.2%"
   },
+  buttonTop: {
+    marginRight: "8px"
+  },
   advanceSettings: {
     marginTop: 16
   }
@@ -230,11 +233,25 @@ function App() {
   }
 
   const show = () => {
-
+    try {
+      if (localStream) {
+        localStream.unmuteVideo();
+        setisHidden(false);
+      }
+    } catch(err) {
+      enqueueSnackbar(`Failed to enable video, ${err}`, { variant: "error" });
+    }
   }
 
   const hide = () => {
-    
+    try {
+      if (localStream) {
+        localStream.muteVideo();
+        setisHidden(true);
+      }
+    } catch(err) {
+      enqueueSnackbar(`Failed to disable video, ${err}`, { variant: "error" });
+    }
   }
 
   const VideoEnableDisableBtn = () => {
@@ -253,6 +270,7 @@ function App() {
   const MuteUnmuteBtn = () => {
     return (
       <Button
+        className={classes.buttonTop}
         color={isMuted ? "primary" : "secondary"}
         onClick={isMuted ? unmute : mute}
         variant="contained"
