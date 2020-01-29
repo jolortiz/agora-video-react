@@ -1,53 +1,91 @@
-# Web Tutorial For React & TS - 1to1
+# Agora React & TS Web App Demo
 
-*English | [中文](README.zh.md)*
+This tutorial explains my process of going through the Quickstart for the React & TS Agora Web App and adding some extra functionality.
 
-This tutorial shows you how to quickly create an basic video communication using the Agora sample app.
+### Quick Start
 
-## Prerequisites
+I began by cloning AgoraIO's [Basic Video Call repo](https://github.com/AgoraIO/Basic-Video-Call) and navigating to [Web Tutorial For React & TS - 1to1](https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Web-Tutorial-1to1-React).
 
-- nodejs LTS
-- A web browser
+I then followed the instructions in the README:
+1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/).
+2. Create a new project in the Dashboard, generate a token, and come up with a channel name.
+3. Install the required packages for the project using npm.
+4. Use npm to run dev environment and build for production.
 
-## Quick Start
+After following these instructions I have the sample app up and running! To use the video call system take the App ID, Channel Name, and Temp Token and input them into the app to join the channel.
 
-This section shows you how to prepare, and run the sample application.
+### Added Functionality
 
-### Obtain an App ID
+Now that I have my dev environment set up, It was time to look over the code and add some aditional functionality. For this project I added Mute/Unmute capabilities as well as Enable/Disable Video capabilities. I implemented these in the exact same way so I will only cover Mute/Unmute here.
 
-To build and run the sample application, get an App ID:
-1. Create a developer account at [agora.io](https://dashboard.agora.io/signin/). Once you finish the signup process, you will be redirected to the Dashboard.
-2. Navigate in the Dashboard tree on the left to **Projects** > **Project List**.
-3. Save the **App ID** from the Dashboard for later use.
-4. Generate a temp **Access Token** (valid for 24 hours) from dashboard page with given channel name, save for later use.
+I began by adding a button component that I inserted into the header. This component is a Material-UI component and you can see the documenatation for it [here](https://material-ui.com/api/button/). This button reflects changes made to the isMuted variable that I added to the state. Dependent upon this variable, the button will call a function to mute or unmute the stream when it is clicked.
+```javascript
+const MuteUnmuteBtn = () => {
+  return (
+    <Button
+      className={classes.buttonTop}
+      color={isMuted ? "primary" : "secondary"} // themed colors
+      onClick={isMuted ? unmute : mute}
+      variant="contained"
+      disabled={!isJoined || isLoading} // disable button if stream is not live
+    >
+      {isMuted ? "Unmute" : "Mute"}
+    </Button>
+  );
+}
+```
 
+I then consulted the [documentation](https://docs.agora.io/en/Video/API%20Reference/web/index.html) to find out what methods I needed to mute and unmute the stream. I navigated to the Stream section, since I knew I would be manipulating the Stream object. I found the right methods and added them to my functions making sure to also update the state to reflect the changes.
+```javascript
+const mute = () => {
+  try {
+    if (localStream) {
+      localStream.muteAudio(); // mute audio
+      setisMuted(true); // update state
+    }
+  } catch(err) {
+    enqueueSnackbar(`Failed to mute, ${err}`, { variant: "error" });
+  }
+}
 
-### Install dependencies and integrate the Agora Video SDK
+const unmute = () => {
+  try {
+    if (localStream) {
+      localStream.unmuteAudio(); // unmute audio
+      setisMuted(false); // update state
+    }
+  } catch(err) {
+    enqueueSnackbar(`Failed to unmute, ${err}`, { variant: "error" });
+  }
+}
+```
 
-1. Using the Terminal app, enter the `install` command in your project directory. This command installs libraries that are required to run the sample application.
-    ``` bash
-    # install dependencies
-    npm install
-    ```
-2. Start the application by entering the `run dev` or `run build` command.
-    The `run dev` command is for development purposes.
-    ``` bash
-    # serve with hot reload at localhost:8080
-    npm run dev
-    ```
-    The `run build` command is for production purposes and minifies code.
-    ``` bash
-    # build for production with minification
-    npm run build
-    ```
-3. Your default browser should open and display the sample application, as shown here.
-    **Note:** In some cases, you may need to open a browser and enter `http://localhost:8080` as the URL.
+Mute and unmute were now functional and I could implement disable/enable audio in exactly the same way.
 
-## Resources
-
-- You can find full API document at [Document Center](https://docs.agora.io/en/)
-- You can file bugs about this demo at [issue](https://github.com/AgoraIO/Basic-Video-Call/issues)
-
-## License
-
-The MIT License (MIT)
+### Version Control & Deployment
+I uploaded the source code to this repository, and deployed the app on GitHub Pages. My process is detailed in the steps below:
+1. Navigate to your project folder and install GitHub Pages package as a dev-dependancy.
+```shell
+npm install gh-pages --save-dev
+```
+2. Open `package.json` and add a new property `homepage` with the URL for your project. The URL scheme will be as follows `"http://{your-username}.github.io/{repo-name}"`.
+```
+homepage": "https://jolortiz.github.io/agora-video-react/",
+```
+3. Now add `predeploy` and `deploy` to the `scripts` property.
+```
+"scripts": {
+  "predeploy": "npm run build",
+  "deploy": "gh-pages -d build"
+  // ...
+}
+```
+4. Create a Git repository, intialize locally, and add it as a remote.
+```shell
+git remote add origin git@github.com:username/new_repo
+```
+5. Now you can finally deploy!
+```shell
+npm run deploy
+```
+---
