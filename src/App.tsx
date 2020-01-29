@@ -1,3 +1,7 @@
+/*
+~~ Source Code cloned from https://github.com/AgoraIO/Basic-Video-Call/tree/master/One-to-One-Video/Agora-Web-Tutorial-1to1-React
+~~ I implemented: Enabling/Disabling Video, Muting/Unmuting Audio, Switching camera
+*/
 import React, { useReducer, useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -34,6 +38,7 @@ const useStyles = makeStyles(theme => ({
     padding: 12
   },
   title: {
+    flexGrow: 1,
     fontWeight: 400
   },
   divider: {
@@ -114,6 +119,8 @@ const reducer = (
 
 function App() {
   const classes = useStyles();
+  const [isMuted, setisMuted] = useState(false);
+  const [isHidden, setisHidden] = useState(false);
   const [isJoined, setisJoined] = useState(false);
   const [isPublished, setIsPublished] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -200,6 +207,62 @@ function App() {
     }
   };
 
+  const mute = () => {
+    try {
+      if (localStream) {
+        localStream.muteAudio();
+        setisMuted(true);
+      }
+    } catch(err) {
+      enqueueSnackbar(`Failed to mute, ${err}`, { variant: "error" });
+    }
+  }
+
+  const unmute = () => {
+    try {
+      if (localStream) {
+        localStream.unmuteAudio();
+        setisMuted(false);
+      }
+    } catch(err) {
+      enqueueSnackbar(`Failed to unmute, ${err}`, { variant: "error" });
+    }
+  }
+
+  const show = () => {
+
+  }
+
+  const hide = () => {
+    
+  }
+
+  const VideoEnableDisableBtn = () => {
+    return (
+      <Button
+        color={isHidden ? "primary" : "secondary"}
+        onClick={isHidden ? show : hide}
+        variant="contained"
+        disabled={!isJoined || isLoading}
+      >
+        {isHidden ? "Show" : "Hide"}
+      </Button>
+    );
+  }
+
+  const MuteUnmuteBtn = () => {
+    return (
+      <Button
+        color={isMuted ? "primary" : "secondary"}
+        onClick={isMuted ? unmute : mute}
+        variant="contained"
+        disabled={!isJoined || isLoading}
+      >
+        {isMuted ? "Unmute" : "Mute"}
+      </Button>
+    );
+  }
+
   const JoinLeaveBtn = () => {
     return (
       <Button
@@ -233,8 +296,10 @@ function App() {
       <AppBar color="primary">
         <Toolbar>
           <Typography className={classes.title} variant="h6">
-            Basic Communication
+            Demo
           </Typography>
+          <MuteUnmuteBtn />
+          <VideoEnableDisableBtn />
         </Toolbar>
       </AppBar>
       <Toolbar className={classes.divider} />
