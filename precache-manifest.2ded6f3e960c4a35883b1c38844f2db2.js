@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "76a011dcba3b726223d5e7b80e9bd65b",
+    "revision": "98139eb1c914ceb4e09dd04c2792c8c1",
     "url": "/agora-video-react/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/agora-video-react/static/css/2.bd936ec9.chunk.css"
   },
   {
-    "revision": "5b13401e8e8c35e1f572",
+    "revision": "8f9618e7d54ec0048137",
     "url": "/agora-video-react/static/css/main.ff19311d.chunk.css"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/agora-video-react/static/js/2.a5c20d1b.chunk.js"
   },
   {
-    "revision": "5b13401e8e8c35e1f572",
-    "url": "/agora-video-react/static/js/main.00d52d99.chunk.js"
+    "revision": "8f9618e7d54ec0048137",
+    "url": "/agora-video-react/static/js/main.e429a218.chunk.js"
   },
   {
     "revision": "db0c5c13ccde56b071d7",
