@@ -13,7 +13,6 @@ I then followed the instructions in the README:
 4. Use npm to run dev environment and build for production.
 
 After following these instructions I have the sample app up and running! To use the video call system take the App ID, Channel Name, and Temp Token and input them into the app to join the channel.
----
 
 ### Added Functionality
 
@@ -62,7 +61,6 @@ const unmute = () => {
 ```
 
 `mute` and `unmute` were now functional and I could implement disable/enable audio in exactly the same way.
----
 
 ### Version Control & Deployment
 I uploaded the source code to this repository, and deployed the app on GitHub Pages. My process is detailed in the steps below:
@@ -90,4 +88,3 @@ $ git remote add origin git@github.com:username/new_repo
 ```shell
 $ npm run deploy
 ```
----
